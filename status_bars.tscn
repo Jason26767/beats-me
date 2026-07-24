@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://b1mhnxbirrxhd"]
+
+[ext_resource type="Script" uid="uid://b62337byrsutu" path="res://status_bars.gd" id="1_2gltg"]
+
+[node name="Node2D" type="Node2D" unique_id=1073120642]
+script = ExtResource("1_2gltg")
+max_hp = 10
+damage = 2
+max_statuses = 20
+regens = 0.4
+mistake_cost = 2.0
+bar_width = 36
+outline_width = 4
+player_color = Color(0, 1, 0.93333334, 1)
+enemy_color = Color(0.8627451, 0.34509805, 0.36862746, 1)
+fatigue_color = Color(0.15686275, 0, 0.627451, 1)
+shock_color = Color(1, 1, 0.53333336, 1)

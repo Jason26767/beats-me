@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://0op1op11onnk"]
+
+[ext_resource type="Script" uid="uid://c6lcsypgkv36y" path="res://middle_circle.gd" id="1_044hc"]
+[ext_resource type="PackedScene" uid="uid://cbmahui0b741x" path="res://shockwave.tscn" id="2_1ehkf"]
+
+[node name="Node2D" type="Node2D" unique_id=65215951]
+position = Vector2(1, 1)
+script = ExtResource("1_044hc")
+radius = 50.0
+shockwave_scene = ExtResource("2_1ehkf")

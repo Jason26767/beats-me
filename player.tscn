@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dp257vyln8m02"]
+
+[ext_resource type="Script" uid="uid://bt60ymkfdcox6" path="res://player.gd" id="1_4flbx"]
+
+[node name="Node2D" type="Node2D" unique_id=19426371]
+position = Vector2(896, 441.5)
+script = ExtResource("1_4flbx")
+glow_intensity = 1.6
+base_color = Color(0, 1, 0.93333334, 1)
+attack_movement = 100

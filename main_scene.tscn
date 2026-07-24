@@ -1,0 +1,125 @@
+[gd_scene format=3 uid="uid://ck1rdqim6d7ga"]
+
+[ext_resource type="PackedScene" uid="uid://0op1op11onnk" path="res://middle_circle.tscn" id="1_0f027"]
+[ext_resource type="PackedScene" uid="uid://dp257vyln8m02" path="res://player.tscn" id="2_2c62f"]
+[ext_resource type="PackedScene" uid="uid://cwliiogiogjqx" path="res://progress_line.tscn" id="2_hq1ik"]
+[ext_resource type="PackedScene" uid="uid://nkg42mjmhrne" path="res://line_music.tscn" id="3_gyfs4"]
+[ext_resource type="PackedScene" uid="uid://42v2uoh6kcv" path="res://note_spawner.tscn" id="5_8mm7a"]
+[ext_resource type="PackedScene" uid="uid://b1mhnxbirrxhd" path="res://status_bars.tscn" id="6_hq1ik"]
+
+[sub_resource type="GDScript" id="GDScript_d5x1h"]
+script/source = "extends Timer
+
+@onready var progress_bar: Node = $\"../progress_bar\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+
+func _on_timeout() -> void:
+	progress_bar.position = Vector2.ZERO
+"
+
+[sub_resource type="Environment" id="Environment_2c62f"]
+background_mode = 3
+glow_enabled = true
+glow_levels/2 = 0.0
+glow_levels/4 = 0.53
+glow_levels/5 = 0.5
+glow_intensity = 1.64
+glow_strength = 0.9
+glow_bloom = 1.0
+glow_hdr_luminance_cap = 13.32
+
+[node name="Node2D" type="Node2D" unique_id=706812423]
+
+[node name="measure_timer" type="Timer" parent="." unique_id=1165620678]
+wait_time = 2.0
+autostart = true
+script = SubResource("GDScript_d5x1h")
+
+[node name="player_lines" parent="." unique_id=878786451 instance=ExtResource("3_gyfs4")]
+line_width = 6
+measures = 4
+line_height = 90
+line_color = Color(0, 1, 0.93333334, 1)
+
+[node name="enemy_lines" parent="." unique_id=1959477757 instance=ExtResource("3_gyfs4")]
+line_width = 6
+measures = 4
+line_height = 90
+go_down = 100
+line_color = Color(0.8627451, 0.34509805, 0.36862746, 1)
+
+[node name="middle_pulser" parent="." unique_id=65215951 instance=ExtResource("1_0f027")]
+position = Vector2(896, 441.5)
+radius = 100.0
+line_width = 20.0
+glow_intensity = 1.6
+base_color = Color(1, 1, 1, 1)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=41500149]
+environment = SubResource("Environment_2c62f")
+
+[node name="backround" type="ColorRect" parent="." unique_id=1428621608]
+z_index = -1
+offset_right = 1168.0
+offset_bottom = 656.0
+color = Color(0, 0, 0, 1)
+
+[node name="player_notes" parent="." unique_id=1610927702 instance=ExtResource("5_8mm7a")]
+note_size = 20
+total_measures = 4.0
+go_down = 45
+note_chance = 0.6
+
+[node name="enemy_notes" parent="." unique_id=125860686 instance=ExtResource("5_8mm7a")]
+note_size = 20
+note_color = Color(0.8627451, 0.34509805, 0.36862746, 1)
+total_measures = 4.0
+go_down = 145
+note_chance = 0.6
+
+[node name="player" parent="." unique_id=19426371 node_paths=PackedStringArray("my_notes") instance=ExtResource("2_2c62f")]
+glow_intensity = 1.4
+attack_movement = 60
+my_notes = NodePath("../player_notes")
+controlling = true
+
+[node name="enemy" parent="." unique_id=1899649160 node_paths=PackedStringArray("my_notes") instance=ExtResource("2_2c62f")]
+glow_intensity = 1.4
+base_color = Color(0.8627451, 0.34509805, 0.36862746, 1)
+deviation_rightside = -0.5
+attack_movement = -60
+my_notes = NodePath("../enemy_notes")
+
+[node name="progress_bar" parent="." unique_id=1649425285 instance=ExtResource("2_hq1ik")]
+width = 4
+height = 190
+
+[node name="status bars" parent="." unique_id=1073120642 instance=ExtResource("6_hq1ik")]
+max_hp = 100
+damage = 1
+max_statuses = 10
+regens = 0.2
+mistake_cost = 1.0
+fatigue_color = Color(0, 1, 0, 1)
+enemy_defend_miss = 0.2
+enemy_attack_miss = 0.1
+enemy_make_fatigue = 0.1
+
+[connection signal="timeout" from="measure_timer" to="middle_pulser" method="_on_timer_timeout"]
+[connection signal="timeout" from="measure_timer" to="player_notes" method="_on_measure_timer_timeout"]
+[connection signal="timeout" from="measure_timer" to="enemy_notes" method="_on_measure_timer_timeout"]
+[connection signal="timeout" from="measure_timer" to="player" method="_on_measure_timer_timeout"]
+[connection signal="timeout" from="measure_timer" to="enemy" method="_on_measure_timer_timeout"]
+[connection signal="timeout" from="measure_timer" to="progress_bar" method="_on_timer_timeout"]
+[connection signal="timeout" from="measure_timer" to="status bars" method="_on_measure_timer_timeout"]
+[connection signal="next_beat" from="middle_pulser" to="status bars" method="_on_middle_pulser_next_beat"]

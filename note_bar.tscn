@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bn4nkwlqjn2k2"]
+
+[ext_resource type="Script" uid="uid://dkie0jhpsy0tp" path="res://note_bar.gd" id="1_273me"]
+
+[node name="ColorRect" type="ColorRect" unique_id=802263843]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0, 1, 0, 1)
+script = ExtResource("1_273me")

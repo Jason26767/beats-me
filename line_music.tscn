@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://nkg42mjmhrne"]
+
+[ext_resource type="Script" uid="uid://cve1rkhty6cqo" path="res://line_music.gd" id="1_ui4dh"]
+
+[node name="Node2D" type="Node2D" unique_id=878786451]
+script = ExtResource("1_ui4dh")
+line_width = 8
+spaces = 4
+line_height = 100
+sub_line_height = 60
+meter = 4
+line_color = Color(1, 1, 1, 1)

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cwliiogiogjqx"]
+
+[ext_resource type="Script" uid="uid://0u1rwk5wm0or" path="res://progress_line.gd" id="1_s8feb"]
+
+[node name="ColorRect" type="ColorRect" unique_id=1649425285]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_s8feb")

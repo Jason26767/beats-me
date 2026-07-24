@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cbmahui0b741x"]
+
+[ext_resource type="Script" uid="uid://3o30htkvmjg8" path="res://shockwave.gd" id="1_pkgyo"]
+
+[node name="Node2D" type="Node2D" unique_id=1482333770]
+script = ExtResource("1_pkgyo")
+fade_speed = 1.0

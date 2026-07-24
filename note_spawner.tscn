@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://42v2uoh6kcv"]
+
+[ext_resource type="Script" uid="uid://bw52up7ifb87f" path="res://note_spawner.gd" id="1_dsjd3"]
+
+[node name="Node2D" type="Node2D" unique_id=1610927702]
+script = ExtResource("1_dsjd3")
+note_size = 10
+note_color = Color(0, 1, 0.93333334, 1)
+width = 4.0
